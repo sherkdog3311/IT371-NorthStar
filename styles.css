@@ -1,0 +1,76 @@
+/* NorthStar Trading Card Collection & Deck Manager */
+/* IT371 Web Design and Development */
+
+/* Main page settings */
+body {
+    background-color: #121212;
+    color: #e8e8e8;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Site header */
+header {
+    background-color: #1c1c1c;
+    padding: 25px 40px;
+    border-bottom: 3px solid #3b82f6;
+}
+
+header h1 {
+    color: #3b82f6;
+    margin: 0;
+}
+
+header p {
+    margin-bottom: 0;
+}
+
+/* Navigation menu */
+nav {
+    background-color: #242424;
+    padding: 15px 40px;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 25px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #4ade80;
+    text-decoration: underline;
+}
+
+/* Main page content */
+main {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 30px;
+}
+
+h2 {
+    color: #4ade80;
+}
+
+h3 {
+    color: #3b82f6;
+}
+
+/* Content sections */
+section {
+    background-color: #1c1c1c;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+}
+
+/* Footer */
+footer {
+    background-color: #242424;
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+}
