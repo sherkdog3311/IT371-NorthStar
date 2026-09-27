@@ -99,6 +99,33 @@ section {
     margin-bottom: 0;
 }
 
+/* Collection table */
+.table-container {
+    overflow-x: auto;
+}
+
+.collection-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.collection-table th,
+.collection-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #444444;
+}
+
+.collection-table th {
+    background-color: #242424;
+    color: #4ade80;
+}
+
+.collection-table tr:hover {
+    background-color: #242424;
+}
+
 /* Footer */
 footer {
     background-color: #242424;
