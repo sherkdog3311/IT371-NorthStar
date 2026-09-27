@@ -67,6 +67,16 @@ section {
     border-radius: 8px;
 }
 
+/* NorthStar banner */
+.site-banner {
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    margin: 0 auto 25px;
+    border-radius: 8px;
+}
+
 /* Footer */
 footer {
     background-color: #242424;
