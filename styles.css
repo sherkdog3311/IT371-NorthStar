@@ -84,3 +84,37 @@ footer {
     padding: 15px;
     margin-top: 30px;
 }
+
+/* Mobile responsive layout */
+@media (max-width: 600px) {
+
+    header {
+        padding: 20px;
+    }
+
+    nav {
+        padding: 12px 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 20px;
+    }
+
+    nav a {
+        margin-right: 0;
+    }
+
+    main {
+        margin: 20px auto;
+        padding: 0 20px;
+    }
+
+    .site-banner {
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    section {
+        padding: 18px;
+    }
+}
