@@ -30,11 +30,15 @@ header {
 
 header h1 {
     color: #3b82f6;
+    font-size: clamp(36px, 5vw, 60px);
+    line-height: 1.15;
     margin: 0;
 }
 
 header p {
-    margin-bottom: 0;
+    font-size: clamp(16px, 2vw, 24px);
+    font-weight: 500;
+    margin: 12px 0 0;
 }
 
 /* Navigation menu */
