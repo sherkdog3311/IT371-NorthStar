@@ -4,9 +4,10 @@
     <!-- Page metadata -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NorthStar Trading Card Collection page">
+    <meta name="description" content="Browse and filter NorthStar's sample Magic: The Gathering collection.">
     <meta name="author" content="Jesse Sherk">
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
     <title>Collection | NorthStar</title>
 </head>
 <body>
@@ -18,9 +19,9 @@
     </header>
 
     <!-- Main Navigation -->
-    <nav>
+    <nav aria-label="Main navigation">
         <a href="index.html">Home</a>
-        <a href="collection.html">Collection</a>
+        <a href="collection.html" aria-current="page">Collection</a>
         <a href="cards.html">Cards</a>
         <a href="decks.html">Decks</a>
         <a href="wishlist.html">Wishlist</a>
@@ -41,29 +42,99 @@
             </p>
         </section>
 
-        <!-- Sample Collection Table -->
-        <section>
+        <!-- Shared JavaScript filters the sample collection below. -->
+        <section data-card-browser>
             <h2>Collection Details</h2>
             <p>
-                Each card can be organized by important details such as card
-                name, set, type, color, rarity, condition, and quantity.
+                Explore this sample collection by card name, color, or type.
+                These sample entries demonstrate how collection browsing works;
+                they do not represent a saved personal inventory.
+            </p>
+
+            <!-- JavaScript reveals these controls when they are ready to use. -->
+            <div class="filter-controls" data-filter-controls hidden>
+                <div class="filter-field">
+                    <label for="collection-search">Card name</label>
+                    <input
+                        type="search"
+                        id="collection-search"
+                        data-card-search
+                        placeholder="Search by card name"
+                        aria-controls="collection-results">
+                </div>
+
+                <div class="filter-field">
+                    <label for="collection-color">Color</label>
+                    <select
+                        id="collection-color"
+                        data-color-filter
+                        aria-controls="collection-results">
+                        <option value="">All colors</option>
+                        <option value="white">White</option>
+                        <option value="blue">Blue</option>
+                        <option value="black">Black</option>
+                        <option value="red">Red</option>
+                        <option value="green">Green</option>
+                        <option value="colorless">Colorless</option>
+                    </select>
+                </div>
+
+                <div class="filter-field">
+                    <label for="collection-type">Card type</label>
+                    <select
+                        id="collection-type"
+                        data-type-filter
+                        aria-controls="collection-results">
+                        <option value="">All types</option>
+                        <option value="creature">Creature</option>
+                        <option value="artifact">Artifact</option>
+                        <option value="enchantment">Enchantment</option>
+                        <option value="instant">Instant</option>
+                        <option value="sorcery">Sorcery</option>
+                        <option value="planeswalker">Planeswalker</option>
+                        <option value="land">Land</option>
+                    </select>
+                </div>
+
+                <button type="button" data-reset-filters>
+                    Clear filters
+                </button>
+            </div>
+
+            <noscript>
+                <p>
+                    Enable JavaScript to search and filter.
+                    You can still browse the complete sample collection below.
+                </p>
+            </noscript>
+
+            <!-- Announces the number of matching entries after filtering. -->
+            <p data-result-count role="status" aria-atomic="true"></p>
+
+            <p data-no-results hidden>
+                No cards match your search. Try another name or clear the filters.
             </p>
 
             <div class="table-container">
                 <table class="collection-table">
+                    <caption>Sample collection inventory</caption>
                     <thead>
                         <tr>
-                            <th>Card Name</th>
-                            <th>Set</th>
-                            <th>Type</th>
-                            <th>Color</th>
-                            <th>Rarity</th>
-                            <th>Condition</th>
-                            <th>Quantity</th>
+                            <th scope="col">Card Name</th>
+                            <th scope="col">Set</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Color</th>
+                            <th scope="col">Rarity</th>
+                            <th scope="col">Condition</th>
+                            <th scope="col">Quantity</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
+                    <tbody id="collection-results">
+                        <tr
+                            data-card
+                            data-name="Aesi, Tyrant of Gyre Strait"
+                            data-color="green blue"
+                            data-type="creature">
                             <td>Aesi, Tyrant of Gyre Strait</td>
                             <td>Commander Legends</td>
                             <td>Creature</td>
@@ -72,7 +143,11 @@
                             <td>Near Mint</td>
                             <td>1</td>
                         </tr>
-                        <tr>
+                        <tr
+                            data-card
+                            data-name="Sol Ring"
+                            data-color="colorless"
+                            data-type="artifact">
                             <td>Sol Ring</td>
                             <td>Commander</td>
                             <td>Artifact</td>
@@ -81,7 +156,11 @@
                             <td>Near Mint</td>
                             <td>4</td>
                         </tr>
-                        <tr>
+                        <tr
+                            data-card
+                            data-name="Primordial Hydra"
+                            data-color="green"
+                            data-type="creature">
                             <td>Primordial Hydra</td>
                             <td>Magic 2013</td>
                             <td>Creature</td>
