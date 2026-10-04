@@ -4,9 +4,10 @@
     <!-- Page metadata -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NorthStar Trading Card information and browsing page">
+    <meta name="description" content="Search and filter sample Magic: The Gathering cards with NorthStar.">
     <meta name="author" content="Jesse Sherk">
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
     <title>Cards | NorthStar</title>
 </head>
 <body>
@@ -18,10 +19,10 @@
     </header>
 
     <!-- Main Navigation -->
-    <nav>
+    <nav aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="collection.html">Collection</a>
-        <a href="cards.html">Cards</a>
+        <a href="cards.html" aria-current="page">Cards</a>
         <a href="decks.html">Decks</a>
         <a href="wishlist.html">Wishlist</a>
         <a href="about.html">About</a>
@@ -36,9 +37,8 @@
             <p>
                 The NorthStar Card Browser is designed to make it easier to
                 search for Magic: The Gathering cards and view useful card
-                information in one place. Players can use this page to find
-                cards for their collection or research possible additions
-                to their decks.
+                information in one place. Players can use this page to research
+                possible additions to their collections and decks.
             </p>
         </section>
 
@@ -47,56 +47,155 @@
             <h2>Card Information</h2>
 
             <div class="feature-grid">
-
                 <div class="feature-card">
                     <h3>Card Name</h3>
                     <p>
-                        Search and identify cards by name to quickly locate
-                        specific cards in the NorthStar database.
+                        Search by name to quickly locate a card among
+                        the sample entries below.
                     </p>
                 </div>
 
                 <div class="feature-card">
                     <h3>Card Type</h3>
                     <p>
-                        View whether a card is a creature, artifact,
-                        enchantment, instant, sorcery, planeswalker, or land.
+                        Filter by card type, such as creature or artifact,
+                        to find cards that fit your plans.
                     </p>
                 </div>
 
                 <div class="feature-card">
                     <h3>Color</h3>
                     <p>
-                        Organize cards by color identity to help locate cards
-                        that may work with a particular deck.
+                        Narrow the results by color. Cards with multiple
+                        listed colors appear under each of those colors.
                     </p>
                 </div>
 
                 <div class="feature-card">
                     <h3>Rarity</h3>
                     <p>
-                        View card rarity information such as common, uncommon,
-                        rare, and mythic rare.
+                        View the rarity listed for each sample printing,
+                        such as uncommon, rare, or mythic rare.
                     </p>
                 </div>
-
             </div>
         </section>
 
-        <!-- Search and Browse -->
-        <section>
+        <!-- Shared JavaScript filters these sample card entries. -->
+        <section data-card-browser>
             <h2>Search and Browse</h2>
             <p>
-                NorthStar is designed to allow users to browse cards and narrow
-                their search using important card details. Search tools can help
-                players locate cards by name, type, color, set, or rarity instead
-                of searching through an entire collection manually.
+                Try searching these three sample cards by name or combine
+                the color and type filters. This preview demonstrates browsing;
+                it does not search the full Magic card catalog.
             </p>
-            <p>
-                Card information can also be used alongside the Collection and
-                Decks sections of NorthStar, making it easier to determine whether
-                a card is already owned or being used in an existing deck.
+
+            <!-- Reveal the controls only after JavaScript initializes. -->
+            <div class="filter-controls" data-filter-controls hidden>
+                <div class="filter-field">
+                    <label for="cards-search">Card name</label>
+                    <input
+                        type="search"
+                        id="cards-search"
+                        data-card-search
+                        placeholder="Search by card name"
+                        aria-controls="cards-results">
+                </div>
+
+                <div class="filter-field">
+                    <label for="cards-color">Color</label>
+                    <select
+                        id="cards-color"
+                        data-color-filter
+                        aria-controls="cards-results">
+                        <option value="">All colors</option>
+                        <option value="white">White</option>
+                        <option value="blue">Blue</option>
+                        <option value="black">Black</option>
+                        <option value="red">Red</option>
+                        <option value="green">Green</option>
+                        <option value="colorless">Colorless</option>
+                    </select>
+                </div>
+
+                <div class="filter-field">
+                    <label for="cards-type">Card type</label>
+                    <select
+                        id="cards-type"
+                        data-type-filter
+                        aria-controls="cards-results">
+                        <option value="">All types</option>
+                        <option value="creature">Creature</option>
+                        <option value="artifact">Artifact</option>
+                        <option value="enchantment">Enchantment</option>
+                        <option value="instant">Instant</option>
+                        <option value="sorcery">Sorcery</option>
+                        <option value="planeswalker">Planeswalker</option>
+                        <option value="land">Land</option>
+                    </select>
+                </div>
+
+                <button type="button" data-reset-filters>
+                    Clear filters
+                </button>
+            </div>
+
+            <noscript>
+                <p>
+                    Enable JavaScript to search and filter.
+                    You can still read all sample card entries below.
+                </p>
+            </noscript>
+
+            <!-- Provide feedback when the displayed results change. -->
+            <p data-result-count role="status" aria-atomic="true"></p>
+
+            <p data-no-results hidden>
+                No cards match your search. Try another name or clear the filters.
             </p>
+
+            <div class="feature-grid" id="cards-results">
+
+                <article
+                    class="feature-card"
+                    data-card
+                    data-name="Aesi, Tyrant of Gyre Strait"
+                    data-color="green blue"
+                    data-type="creature">
+                    <h3>Aesi, Tyrant of Gyre Strait</h3>
+                    <p><strong>Set:</strong> Commander Legends</p>
+                    <p><strong>Type:</strong> Creature</p>
+                    <p><strong>Color:</strong> Green/Blue</p>
+                    <p><strong>Rarity:</strong> Rare</p>
+                </article>
+
+                <article
+                    class="feature-card"
+                    data-card
+                    data-name="Sol Ring"
+                    data-color="colorless"
+                    data-type="artifact">
+                    <h3>Sol Ring</h3>
+                    <p><strong>Set:</strong> Commander</p>
+                    <p><strong>Type:</strong> Artifact</p>
+                    <p><strong>Color:</strong> Colorless</p>
+                    <p><strong>Rarity:</strong> Uncommon</p>
+                </article>
+
+                <article
+                    class="feature-card"
+                    data-card
+                    data-name="Primordial Hydra"
+                    data-color="green"
+                    data-type="creature">
+                    <h3>Primordial Hydra</h3>
+                    <p><strong>Set:</strong> Magic 2013</p>
+                    <p><strong>Type:</strong> Creature</p>
+                    <p><strong>Color:</strong> Green</p>
+                    <p><strong>Rarity:</strong> Mythic Rare</p>
+                </article>
+
+            </div>
         </section>
 
     </main>
