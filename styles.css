@@ -1,11 +1,22 @@
 /* NorthStar Trading Card Collection & Deck Manager */
 /* IT371 Web Design and Development */
 
+/* Include padding and borders in element widths. */
+* {
+    box-sizing: border-box;
+}
+
+/* Keep filtered cards and inactive controls hidden. */
+[hidden] {
+    display: none !important;
+}
+
 /* Main page settings */
 body {
     background-color: #121212;
     color: #e8e8e8;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
     margin: 0;
     line-height: 1.6;
 }
@@ -28,6 +39,9 @@ header p {
 
 /* Navigation menu */
 nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 25px;
     background-color: #242424;
     padding: 15px 40px;
 }
@@ -35,18 +49,27 @@ nav {
 nav a {
     color: #ffffff;
     text-decoration: none;
-    margin-right: 25px;
     font-weight: bold;
 }
 
-nav a:hover {
+nav a:hover,
+nav a[aria-current="page"] {
     color: #4ade80;
     text-decoration: underline;
 }
 
+/* Visible keyboard focus for links and form controls */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 3px solid #4ade80;
+    outline-offset: 4px;
+}
+
 /* Main page content */
 main {
-    max-width: 1000px;
+    max-width: 1060px;
     margin: 30px auto;
     padding: 0 30px;
 }
@@ -80,15 +103,17 @@ section {
 /* Feature card grid */
 .feature-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
 }
 
 .feature-card {
+    min-width: 0;
     background-color: #242424;
     padding: 20px;
     border-radius: 8px;
     border-left: 4px solid #3b82f6;
+    overflow-wrap: anywhere;
 }
 
 .feature-card h3 {
@@ -99,8 +124,74 @@ section {
     margin-bottom: 0;
 }
 
+/* Shared search and filter controls */
+.filter-controls {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    align-items: end;
+    margin: 24px 0;
+}
+
+.filter-field {
+    min-width: 0;
+}
+
+.filter-field label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.filter-field input,
+.filter-field select {
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 12px;
+    border: 1px solid #888888;
+    border-radius: 6px;
+    background-color: #121212;
+    color: #e8e8e8;
+    font: inherit;
+    color-scheme: dark;
+}
+
+.filter-field input::placeholder {
+    color: #b8b8b8;
+}
+
+.filter-controls button {
+    justify-self: start;
+    min-height: 48px;
+    padding: 10px 20px;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    background-color: #4ade80;
+    color: #121212;
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.filter-controls button:hover {
+    background-color: #86efac;
+}
+
+/* Filter feedback */
+[data-result-count] {
+    font-weight: bold;
+    color: #4ade80;
+}
+
+[data-no-results] {
+    padding: 16px;
+    border-left: 4px solid #4ade80;
+    background-color: #242424;
+}
+
 /* Collection table */
 .table-container {
+    max-width: 100%;
     overflow-x: auto;
 }
 
@@ -108,6 +199,12 @@ section {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+}
+
+.collection-table caption {
+    text-align: left;
+    font-weight: bold;
+    padding-bottom: 10px;
 }
 
 .collection-table th,
@@ -122,7 +219,7 @@ section {
     color: #4ade80;
 }
 
-.collection-table tr:hover {
+.collection-table tbody tr:hover {
     background-color: #242424;
 }
 
@@ -134,8 +231,23 @@ footer {
     margin-top: 30px;
 }
 
+/* Tablet and narrow-window filter layout */
+@media (max-width: 800px) {
+    .filter-controls {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .filter-field:first-child {
+        grid-column: 1 / -1;
+    }
+}
+
 /* Mobile responsive layout */
 @media (max-width: 600px) {
+    body {
+        font-size: 16px;
+    }
+
     header {
         padding: 20px;
     }
@@ -143,12 +255,15 @@ footer {
     nav {
         padding: 12px 20px;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 10px;
     }
 
     nav a {
-        margin-right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
         text-align: center;
     }
 
@@ -158,8 +273,6 @@ footer {
     }
 
     .site-banner {
-        width: 100%;
-        height: auto;
         margin-bottom: 20px;
     }
 
@@ -167,7 +280,22 @@ footer {
         padding: 18px;
     }
 
-    .feature-grid {
-        grid-template-columns: 1fr;
+    .feature-grid,
+    .filter-controls {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .filter-controls button {
+        width: 100%;
+    }
+
+    /* Keep the table readable within its own scrolling container. */
+    .collection-table {
+        min-width: 650px;
+    }
+
+    .collection-table th,
+    .collection-table td {
+        padding: 10px;
     }
 }
