@@ -347,7 +347,7 @@ body::before {
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    background: url("hydra-background.png") center bottom / 100% auto repeat-y;
+    background: url("hydra-background.png") center center / 100% auto no-repeat;
     opacity: 0.45;
 }
 @media (max-width: 600px) {
