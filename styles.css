@@ -339,7 +339,7 @@ footer {
     .contact-form button { width: 100%; }
 }
 
-/* Decorative hydra layer: fade the artwork without fading page content. */
+/* Keep the hydra artwork at a consistent desktop size below navigation. */
 body { position: relative; isolation: isolate; }
 body::before {
     content: "";
@@ -347,9 +347,15 @@ body::before {
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    background: url("hydra-background.png") center center / 100% auto no-repeat;
+    background-image: url("hydra-background.png");
+    background-position: center 320px;
+    background-size: 1774px auto;
+    background-repeat: no-repeat;
     opacity: 0.45;
 }
+@media (max-width: 1774px) {
+    body::before { background-size: 100% auto; }
+}
 @media (max-width: 600px) {
-    body::before { opacity: 0.35; }
+    body::before { background-position: center 300px; opacity: 0.35; }
 }
