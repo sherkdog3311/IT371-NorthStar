@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Page metadata -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact NorthStar with questions, feedback, and website suggestions.">
+    <meta name="author" content="Jesse Sherk">
+    <link rel="stylesheet" href="styles.css">
+    <title>Contact | NorthStar</title>
+    <script src="contact.js" defer></script>
+</head>
+<body>
+
+    <!-- Site Header -->
+    <header>
+        <h1>NorthStar</h1>
+        <p>Trading Card Collection &amp; Deck Manager</p>
+    </header>
+
+    <!-- Main Navigation -->
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="collection.html">Collection</a>
+        <a href="cards.html">Cards</a>
+        <a href="decks.html">Decks</a>
+        <a href="wishlist.html">Wishlist</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+
+    <!-- Main Page Content -->
+    <main>
+        <section>
+            <h2>Contact NorthStar</h2>
+            <p>Have a question, found a problem, or have an idea for NorthStar?
+                Send a message using the form below.</p>
+            <p>All three fields are required. Please do not include passwords,
+                payment details, or other sensitive information. Your name, email,
+                and message are sent through Formspree to handle your inquiry.</p>
+
+            <!-- A regular POST remains available when JavaScript is disabled. -->
+            <form id="contact-form" class="contact-form"
+                  action="https://formspree.io/f/mnpjvljd" method="post">
+                <fieldset>
+                    <legend>Your message</legend>
+                    <div class="contact-field">
+                        <label for="contact-name">Name (required)</label>
+                        <input id="contact-name" name="name" type="text"
+                               autocomplete="name" maxlength="100" required>
+                    </div>
+                    <div class="contact-field">
+                        <label for="contact-email">Email address (required)</label>
+                        <input id="contact-email" name="email" type="email"
+                               autocomplete="email" maxlength="254" required>
+                    </div>
+                    <div class="contact-field">
+                        <label for="contact-message">Message (required)</label>
+                        <textarea id="contact-message" name="message" rows="6"
+                                  maxlength="5000" required></textarea>
+                    </div>
+                    <button type="submit">Send Message</button>
+                </fieldset>
+            </form>
+            <!-- Announce progress, success, and errors to screen readers. -->
+            <p id="contact-status" class="contact-status" role="status"
+               aria-live="polite" aria-atomic="true"></p>
+            <noscript><p>After sending, Formspree will display the submission result.</p></noscript>
+        </section>
+    </main>
+
+    <!-- Site Footer -->
+    <footer>
+        <p>Created by Jesse Sherk | IT371 Web Design and Development</p>
+    </footer>
+
+</body>
+</html>
