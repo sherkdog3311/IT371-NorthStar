@@ -349,11 +349,11 @@ body::before {
     pointer-events: none;
     background-image: url("hydra-background.png");
     background-position: center 320px;
-    background-size: 1774px auto;
+    background-size: 2800px auto;
     background-repeat: no-repeat;
     opacity: 0.45;
 }
-@media (max-width: 1774px) {
+@media (max-width: 2800px) {
     body::before { background-size: 100% auto; }
 }
 @media (max-width: 600px) {
