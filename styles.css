@@ -338,3 +338,18 @@ footer {
     .contact-form fieldset { padding: 14px; }
     .contact-form button { width: 100%; }
 }
+
+/* Decorative hydra layer: fade the artwork without fading page content. */
+body { position: relative; isolation: isolate; }
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: url("hydra-background.png") center center / cover no-repeat;
+    opacity: 0.28;
+}
+@media (max-width: 600px) {
+    body::before { opacity: 0.20; }
+}
