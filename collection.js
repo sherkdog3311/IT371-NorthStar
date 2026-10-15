@@ -5,6 +5,7 @@
   const $ = id => document.getElementById(id);
   const form = $('card-form'), rows = $('collection-results');
   let cards = [], editing = null, ready = true;
+  const ns = window.NorthStar; let deckData = [];
   const fields = ['name', 'set', 'type', 'color', 'rarity', 'condition', 'quantity', 'location'];
   const announce = (message, error = false) => {
     $('collection-status').textContent = message;
@@ -26,10 +27,12 @@
     cards = []; ready = false;
     announce('Your saved collection could not be read. Changes are disabled to protect existing data. Try the browser where you saved your collection, or restore a browser backup.', true);
   }
+  try { deckData = ns.decks(); ns.assertAssignments(cards, deckData); }
+  catch (error) { ready = false; announce(`${error.message} Changes are disabled to protect saved data.`, true); }
   function persist(next, message) {
     if (!ready) return false;
-    try { localStorage.setItem(KEY, JSON.stringify(next)); }
-    catch { announce('The change was not saved. Browser storage may be blocked or full. Your current collection is unchanged; download a backup before closing this page.', true); return false; }
+    try { ns.assertAssignments(next, ns.decks()); localStorage.setItem(KEY, JSON.stringify(next)); }
+    catch (error) { announce(`The change was not saved. ${error.message} Your current collection is unchanged.`, true); return false; }
     cards = next; render(); announce(message); return true;
   }
   function resetEditor() {
@@ -46,6 +49,7 @@
     for (const card of visible) {
       const row = document.createElement('tr');
       for (const field of fields) { const cell = document.createElement('td'); cell.textContent = card[field] || 'Not specified'; row.append(cell); }
+      for (const value of [ns.used(card.id, deckData), card.quantity - ns.used(card.id, deckData)]) { const cell = document.createElement('td'); cell.textContent = value; row.append(cell); }
       const actions = document.createElement('td');
       for (const action of ['Edit', 'Delete']) {
         const button = document.createElement('button'); button.type = 'button'; button.textContent = action;
@@ -101,7 +105,7 @@
   });
   // Avoid silent overwrites if this collection is open in two tabs.
   window.addEventListener('storage', event => {
-    if (event.key === KEY || event.key === null) {
+    if (event.key === KEY || event.key === ns.decksKey || event.key === null) {
       ready = false; for (const control of form.elements) control.disabled = true;
       $('import-cards').disabled = true; $('export-cards').disabled = true;
       announce('Your collection changed in another tab. Reload this page before making further changes.', true);

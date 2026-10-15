@@ -7,6 +7,10 @@
     <meta name="description" content="NorthStar Deck Manager featuring the World Growth Industries Aesi Commander deck">
     <meta name="author" content="Jesse Sherk">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="collection.css">
+    <link rel="stylesheet" href="decks.css">
+    <script src="inventory.js" defer></script>
+    <script src="decks.js" defer></script>
     <title>Decks | NorthStar</title>
 </head>
 <body>
@@ -18,11 +22,11 @@
     </header>
 
     <!-- Main Navigation -->
-    <nav>
+    <nav aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="collection.html">Collection</a>
         <a href="cards.html">Cards</a>
-        <a href="decks.html">Decks</a>
+        <a href="decks.html" aria-current="page">Decks</a>
         <a href="wishlist.html">Wishlist</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
@@ -31,6 +35,22 @@
     <!-- Main Page Content -->
     <main>
 
+<div id="deck-manager">
+<section><h2>My Decks</h2><p>Create a deck and assign cards from your saved <a href="collection.html">Collection</a>. Assignments reserve copies across all decks without reducing the number you own.</p><p>Decks save in this browser on this device. There are no accounts or automatic format-legality checks. Selecting a format is a label, not validation of deck size, singleton rules, or color identity.</p><noscript><p>Enable JavaScript to manage decks.</p></noscript></section>
+<section><h2 id="deck-heading">Create a deck</h2><form id="deck-form" class="collection-editor">
+<div class="filter-field"><label for="deck-name">Deck name (required)</label><input id="deck-name" maxlength="200" required></div>
+<div class="filter-field"><label for="deck-format">Format</label><select id="deck-format"><option>Commander</option><option>Standard</option><option>Modern</option><option>Pioneer</option><option>Pauper</option><option>Legacy</option><option>Vintage</option><option>Limited</option><option>Casual</option></select></div>
+<div class="filter-field"><label for="deck-commander">Commander (optional label)</label><input id="deck-commander" maxlength="200"></div>
+<div class="collection-actions"><button type="submit" id="save-deck">Save deck</button><button type="button" id="cancel-deck" hidden>Cancel edit</button></div></form>
+<p id="deck-status" class="collection-status" role="status" aria-live="polite" aria-atomic="true"></p></section>
+<section><h2>Saved Decks</h2><div class="filter-field"><label for="deck-select">Choose a deck</label><select id="deck-select"></select></div><p id="no-decks">No decks yet. Create your first deck above.</p>
+<div id="deck-workspace" hidden><h3 id="selected-deck-name"></h3><p id="deck-info"></p><div class="collection-actions"><button id="edit-deck" type="button">Edit deck details</button><button id="delete-deck" type="button">Delete deck</button></div>
+<h3>Add cards from your collection</h3><p id="inventory-empty">Your collection is empty. Add cards on the Collection page first.</p>
+<form id="deck-card-form" class="collection-editor"><div class="filter-field"><label for="inventory-card">Collection card (required)</label><select id="inventory-card" required></select></div><div class="filter-field"><label for="assign-quantity">Copies to add (required)</label><input id="assign-quantity" type="number" min="1" max="999999" step="1" value="1" required></div><div class="collection-actions"><button id="assign-card" type="submit">Add to deck</button></div></form>
+<p id="deck-empty">No cards assigned to this deck yet.</p><div class="table-container" tabindex="0" role="region" aria-label="Deck card table; scroll horizontally to see all columns"><table class="collection-table"><caption>Cards assigned to this deck</caption><thead><tr><th scope="col">Card</th><th scope="col">Type</th><th scope="col">In this deck</th><th scope="col">Available across decks</th><th scope="col">Actions</th></tr></thead><tbody id="deck-rows"></tbody></table></div></div></section>
+<section><h2>Deck Backup</h2><p>Download both deck and collection backups. To move to another browser, restore the matching collection first, then the decks. Restoring a deck backup replaces your current decks after confirmation.</p><div class="backup-controls"><button id="backup-decks" type="button">Download deck backup</button><div><label for="restore-decks">Restore deck backup (.json)</label><br><input id="restore-decks" type="file" accept=".json,application/json"></div></div></section>
+</div>
+<details class="example-deck"><summary>View original example: World Growth Industries</summary><p>This is a reference deck list. It is separate from your saved decks and does not reserve collection cards.</p>
         <!-- Deck Overview -->
         <section>
             <h2>World Growth Industries</h2>
@@ -199,6 +219,7 @@
             </div>
         </section>
 
+</details>
     </main>
 
     <!-- Site Footer -->

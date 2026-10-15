@@ -1,0 +1,9 @@
+/* Deck-only additions to the existing NorthStar theme. */
+#deck-manager a { color:#86efac; }
+#deck-workspace h3 { margin-top:28px; }
+.quantity-update { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.quantity-update input { width:85px; min-height:44px; padding:8px; background:#121212; color:#e8e8e8; border:1px solid #888; border-radius:6px; font:inherit; }
+.example-deck { background:#1c1c1c; padding:20px; border-radius:8px; }
+.example-deck summary { color:#4ade80; font-weight:bold; cursor:pointer; padding:10px 0; }
+.example-deck section { padding:12px 0; }
+.example-deck summary:focus-visible { outline:3px solid #4ade80; }

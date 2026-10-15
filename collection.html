@@ -8,6 +8,7 @@
     <meta name="author" content="Jesse Sherk">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="collection.css">
+    <script src="inventory.js" defer></script>
     <script src="collection.js" defer></script>
     <title>Collection | NorthStar</title>
 </head>
@@ -118,7 +119,7 @@
             <p id="result-count" role="status" aria-live="polite"></p>
             <p id="empty-message"></p>
             <div class="table-container" tabindex="0" role="region" aria-label="Collection table; scroll horizontally to see all columns">
-                <table class="collection-table"><caption>My saved collection</caption><thead><tr><th scope="col">Card Name</th><th scope="col">Set</th><th scope="col">Type</th><th scope="col">Color</th><th scope="col">Rarity</th><th scope="col">Condition</th><th scope="col">Quantity</th><th scope="col">Location</th><th scope="col">Actions</th></tr></thead><tbody id="collection-results"></tbody></table>
+                <table class="collection-table"><caption>My saved collection</caption><thead><tr><th scope="col">Card Name</th><th scope="col">Set</th><th scope="col">Type</th><th scope="col">Color</th><th scope="col">Rarity</th><th scope="col">Condition</th><th scope="col">Quantity</th><th scope="col">Location</th><th scope="col">In Decks</th><th scope="col">Available</th><th scope="col">Actions</th></tr></thead><tbody id="collection-results"></tbody></table>
             </div>
         </section>
         <section>
@@ -126,7 +127,7 @@
             <p>Download a backup before switching browsers or devices. Restore a NorthStar backup to replace this browser's collection.</p>
             <div class="backup-controls"><button id="export-cards" type="button">Download backup</button><div><label for="import-cards">Restore backup (.json)</label><br><input id="import-cards" type="file" accept=".json,application/json"></div></div>
         </section>
-        <section><h2>Collection Tracking</h2><p>Record quantities and storage locations to find your cards more easily. Deck assignments, automatic availability counts, and format legality checks are not part of this version.</p></section>
+        <section><h2>Collection Tracking</h2><p>Record quantities and storage locations to find your cards more easily. Cards assigned on the Decks page are counted here. Available copies equal owned copies minus all deck assignments. Remove assignments before deleting a card or reducing its quantity below the assigned total. Format legality checks are not included.</p></section>
     </main>
 
     <!-- Site Footer -->
