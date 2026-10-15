@@ -4,10 +4,11 @@
     <!-- Page metadata -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Browse and filter NorthStar's sample Magic: The Gathering collection.">
+    <meta name="description" content="Add, edit, search, and save your Magic: The Gathering collection in this browser.">
     <meta name="author" content="Jesse Sherk">
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="collection.css">
+    <script src="collection.js" defer></script>
     <title>Collection | NorthStar</title>
 </head>
 <body>
@@ -39,21 +40,32 @@
                 Keep track of the Magic: The Gathering cards in your personal
                 collection. NorthStar helps organize your cards and makes it
                 easier to see what you own, how many copies you have, and where
-                your cards are being used.
+                your cards are stored.
             </p>
         </section>
 
-        <!-- Shared JavaScript filters the sample collection below. -->
-        <section data-card-browser>
+        <section>
+            <h2 id="editor-title">Add a card</h2>
+            <p>Add your own cards, then edit their details or quantities below. Required fields are marked.</p>
+            <p>Your collection is saved automatically in this browser on this device. It is not an account or cloud backup. Private browsing or clearing site data can remove it. Download a backup to keep a copy.</p>
+            <noscript><p>JavaScript is required to manage and save your collection.</p></noscript>
+            <form id="card-form" class="collection-editor">
+<div class="filter-field"><label for="name">Card name (required)</label><input id="name" name="name" maxlength="200" required></div>
+<div class="filter-field"><label for="set">Set / printing</label><input id="set" name="set" maxlength="200"></div>
+<div class="filter-field"><label for="type">Card type (required)</label><input id="type" name="type" maxlength="200" required placeholder="Creature, Artifact Creature, Land..."></div>
+<div class="filter-field"><label for="color">Color (required)</label><input id="color" name="color" maxlength="200" placeholder="Green/Blue or Colorless" required></div>
+<div class="filter-field"><label for="rarity">Rarity</label><input id="rarity" name="rarity" maxlength="200"></div>
+<div class="filter-field"><label for="condition">Condition</label><select id="condition" name="condition"><option>Near Mint</option><option>Lightly Played</option><option>Moderately Played</option><option>Heavily Played</option><option>Damaged</option></select></div>
+<div class="filter-field"><label for="quantity">Quantity owned (required)</label><input id="quantity" name="quantity" type="number" min="1" max="999999" step="1" value="1" required></div>
+<div class="filter-field"><label for="location">Storage location</label><input id="location" name="location" maxlength="200"></div>
+            <div class="collection-actions"><button id="save-card" type="submit">Save card</button><button id="cancel-edit" type="button" hidden>Cancel edit</button></div>
+            </form>
+            <p id="collection-status" class="collection-status" role="status" aria-live="polite" aria-atomic="true"></p>
+        </section>
+        <section>
             <h2>Collection Details</h2>
-            <p>
-                Explore this sample collection by card name, color, or type.
-                These sample entries demonstrate how collection browsing works;
-                they do not represent a saved personal inventory.
-            </p>
-
-            <!-- JavaScript reveals these controls when they are ready to use. -->
-            <div class="filter-controls" data-filter-controls hidden>
+            <p>Search your saved entries by card name, color, or type. Multicolor cards match each listed color.</p>
+            <div class="filter-controls" >
                 <div class="filter-field">
                     <label for="collection-search">Card name</label>
                     <input
@@ -97,95 +109,24 @@
                     </select>
                 </div>
 
-                <button type="button" data-reset-filters>
+                <button type="button" id="clear-filters">
                     Clear filters
                 </button>
             </div>
 
-            <noscript>
-                <p>
-                    Enable JavaScript to search and filter.
-                    You can still browse the complete sample collection below.
-                </p>
-            </noscript>
 
-            <!-- Announces the number of matching entries after filtering. -->
-            <p data-result-count role="status" aria-atomic="true"></p>
-
-            <p data-no-results hidden>
-                No cards match your search. Try another name or clear the filters.
-            </p>
-
-            <div class="table-container">
-                <table class="collection-table">
-                    <caption>Sample collection inventory</caption>
-                    <thead>
-                        <tr>
-                            <th scope="col">Card Name</th>
-                            <th scope="col">Set</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Color</th>
-                            <th scope="col">Rarity</th>
-                            <th scope="col">Condition</th>
-                            <th scope="col">Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody id="collection-results">
-                        <tr
-                            data-card
-                            data-name="Aesi, Tyrant of Gyre Strait"
-                            data-color="green blue"
-                            data-type="creature">
-                            <td>Aesi, Tyrant of Gyre Strait</td>
-                            <td>Commander Legends</td>
-                            <td>Creature</td>
-                            <td>Green/Blue</td>
-                            <td>Rare</td>
-                            <td>Near Mint</td>
-                            <td>1</td>
-                        </tr>
-                        <tr
-                            data-card
-                            data-name="Sol Ring"
-                            data-color="colorless"
-                            data-type="artifact">
-                            <td>Sol Ring</td>
-                            <td>Commander</td>
-                            <td>Artifact</td>
-                            <td>Colorless</td>
-                            <td>Uncommon</td>
-                            <td>Near Mint</td>
-                            <td>4</td>
-                        </tr>
-                        <tr
-                            data-card
-                            data-name="Primordial Hydra"
-                            data-color="green"
-                            data-type="creature">
-                            <td>Primordial Hydra</td>
-                            <td>Magic 2013</td>
-                            <td>Creature</td>
-                            <td>Green</td>
-                            <td>Mythic Rare</td>
-                            <td>Near Mint</td>
-                            <td>1</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <p id="result-count" role="status" aria-live="polite"></p>
+            <p id="empty-message"></p>
+            <div class="table-container" tabindex="0" role="region" aria-label="Collection table; scroll horizontally to see all columns">
+                <table class="collection-table"><caption>My saved collection</caption><thead><tr><th scope="col">Card Name</th><th scope="col">Set</th><th scope="col">Type</th><th scope="col">Color</th><th scope="col">Rarity</th><th scope="col">Condition</th><th scope="col">Quantity</th><th scope="col">Location</th><th scope="col">Actions</th></tr></thead><tbody id="collection-results"></tbody></table>
             </div>
         </section>
-
-        <!-- Collection Tracking -->
         <section>
-            <h2>Collection Tracking</h2>
-            <p>
-                NorthStar is designed to show whether cards are available in
-                your collection or currently being used in a deck. This makes
-                it easier to manage a growing collection without having to
-                search through cards manually.
-            </p>
+            <h2>Collection Backup</h2>
+            <p>Download a backup before switching browsers or devices. Restore a NorthStar backup to replace this browser's collection.</p>
+            <div class="backup-controls"><button id="export-cards" type="button">Download backup</button><div><label for="import-cards">Restore backup (.json)</label><br><input id="import-cards" type="file" accept=".json,application/json"></div></div>
         </section>
-
+        <section><h2>Collection Tracking</h2><p>Record quantities and storage locations to find your cards more easily. Deck assignments, automatic availability counts, and format legality checks are not part of this version.</p></section>
     </main>
 
     <!-- Site Footer -->
