@@ -16,3 +16,11 @@ button:disabled { opacity:.5; cursor:not-allowed; }
 .backup-controls { display:flex; flex-wrap:wrap; gap:16px; align-items:center; }
 .backup-controls input { max-width:100%; font:inherit; }
 @media(max-width:600px) { .collection-editor { grid-template-columns:minmax(0,1fr); } .collection-actions button { width:100%; } }
+
+/* Keep inventory columns readable; scroll the table instead of breaking words. */
+.collection-table { min-width: 1450px; }
+.collection-table th { white-space: nowrap; }
+.collection-table td { overflow-wrap: normal; word-break: normal; max-width: none; }
+.collection-table td:first-child { min-width: 210px; }
+.collection-table td:last-child { min-width: 170px; white-space: nowrap; }
+.collection-table button { white-space: nowrap; }
