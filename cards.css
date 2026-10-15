@@ -1,0 +1,20 @@
+/* Live card lookup additions; preserves the shared NorthStar theme. */
+.card-lookup-form { display:flex; flex-wrap:wrap; gap:16px; align-items:end; }
+.card-lookup-form .filter-field { flex:1 1 300px; }
+.card-lookup-form button,.lookup-examples button { min-height:48px; padding:10px 18px; border:1px solid #4ade80; border-radius:6px; background:#4ade80; color:#121212; font:inherit; font-weight:bold; cursor:pointer; }
+.card-lookup-form button:disabled { opacity:.6; cursor:wait; }
+.lookup-examples { display:flex; flex-wrap:wrap; gap:12px; margin-top:20px; }
+#lookup-status { color:#4ade80; overflow-wrap:anywhere; }
+#lookup-status.lookup-error { color:#fca5a5; }
+.live-card-layout { display:grid; grid-template-columns:minmax(220px,330px) minmax(0,1fr); gap:30px; }
+.card-gallery figure { margin:0 0 24px; }
+.card-gallery img { display:block; width:100%; height:auto; border-radius:12px; }
+.card-gallery figcaption { font-size:16px; margin:10px 0; }
+#live-card-result a { color:#86efac; }
+#live-card-result dt { font-weight:bold; color:#4ade80; }
+#live-card-result dd { margin:0 0 14px; overflow-wrap:anywhere; }
+.oracle-text { white-space:pre-line; }
+.legality-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; }
+.legality-item { background:#242424; border:1px solid #555; border-radius:6px; padding:12px; }
+.legality-item strong,.legality-item span { display:block; }
+@media(max-width:650px) { .live-card-layout { grid-template-columns:minmax(0,1fr); } .card-gallery { max-width:330px; margin:auto; } .card-lookup-form button { width:100%; } }

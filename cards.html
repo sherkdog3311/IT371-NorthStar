@@ -4,10 +4,11 @@
     <!-- Page metadata -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Search and filter sample Magic: The Gathering cards with NorthStar.">
+    <meta name="description" content="Look up Magic: The Gathering card images, details, and format legality with NorthStar.">
     <meta name="author" content="Jesse Sherk">
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="cards.css">
+    <script src="cards.js" defer></script>
     <title>Cards | NorthStar</title>
 </head>
 <body>
@@ -31,174 +32,12 @@
 
     <!-- Main Page Content -->
     <main>
-
-        <!-- Cards Overview -->
-        <section>
-            <h2>Card Browser</h2>
-            <p>
-                The NorthStar Card Browser is designed to make it easier to
-                search for Magic: The Gathering cards and view useful card
-                information in one place. Players can use this page to research
-                possible additions to their collections and decks.
-            </p>
-        </section>
-
-        <!-- Card Information -->
-        <section>
-            <h2>Card Information</h2>
-
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h3>Card Name</h3>
-                    <p>
-                        Search by name to quickly locate a card among
-                        the sample entries below.
-                    </p>
-                </div>
-
-                <div class="feature-card">
-                    <h3>Card Type</h3>
-                    <p>
-                        Filter by card type, such as creature or artifact,
-                        to find cards that fit your plans.
-                    </p>
-                </div>
-
-                <div class="feature-card">
-                    <h3>Color</h3>
-                    <p>
-                        Narrow the results by color. Cards with multiple
-                        listed colors appear under each of those colors.
-                    </p>
-                </div>
-
-                <div class="feature-card">
-                    <h3>Rarity</h3>
-                    <p>
-                        View the rarity listed for each sample printing,
-                        such as uncommon, rare, or mythic rare.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Shared JavaScript filters these sample card entries. -->
-        <section data-card-browser>
-            <h2>Search and Browse</h2>
-            <p>
-                Try searching these three sample cards by name or combine
-                the color and type filters. This preview demonstrates browsing;
-                it does not search the full Magic card catalog.
-            </p>
-
-            <!-- Reveal the controls only after JavaScript initializes. -->
-            <div class="filter-controls" data-filter-controls hidden>
-                <div class="filter-field">
-                    <label for="cards-search">Card name</label>
-                    <input
-                        type="search"
-                        id="cards-search"
-                        data-card-search
-                        placeholder="Search by card name"
-                        aria-controls="cards-results">
-                </div>
-
-                <div class="filter-field">
-                    <label for="cards-color">Color</label>
-                    <select
-                        id="cards-color"
-                        data-color-filter
-                        aria-controls="cards-results">
-                        <option value="">All colors</option>
-                        <option value="white">White</option>
-                        <option value="blue">Blue</option>
-                        <option value="black">Black</option>
-                        <option value="red">Red</option>
-                        <option value="green">Green</option>
-                        <option value="colorless">Colorless</option>
-                    </select>
-                </div>
-
-                <div class="filter-field">
-                    <label for="cards-type">Card type</label>
-                    <select
-                        id="cards-type"
-                        data-type-filter
-                        aria-controls="cards-results">
-                        <option value="">All types</option>
-                        <option value="creature">Creature</option>
-                        <option value="artifact">Artifact</option>
-                        <option value="enchantment">Enchantment</option>
-                        <option value="instant">Instant</option>
-                        <option value="sorcery">Sorcery</option>
-                        <option value="planeswalker">Planeswalker</option>
-                        <option value="land">Land</option>
-                    </select>
-                </div>
-
-                <button type="button" data-reset-filters>
-                    Clear filters
-                </button>
-            </div>
-
-            <noscript>
-                <p>
-                    Enable JavaScript to search and filter.
-                    You can still read all sample card entries below.
-                </p>
-            </noscript>
-
-            <!-- Provide feedback when the displayed results change. -->
-            <p data-result-count role="status" aria-atomic="true"></p>
-
-            <p data-no-results hidden>
-                No cards match your search. Try another name or clear the filters.
-            </p>
-
-            <div class="feature-grid" id="cards-results">
-
-                <article
-                    class="feature-card"
-                    data-card
-                    data-name="Aesi, Tyrant of Gyre Strait"
-                    data-color="green blue"
-                    data-type="creature">
-                    <h3>Aesi, Tyrant of Gyre Strait</h3>
-                    <p><strong>Set:</strong> Commander Legends</p>
-                    <p><strong>Type:</strong> Creature</p>
-                    <p><strong>Color:</strong> Green/Blue</p>
-                    <p><strong>Rarity:</strong> Rare</p>
-                </article>
-
-                <article
-                    class="feature-card"
-                    data-card
-                    data-name="Sol Ring"
-                    data-color="colorless"
-                    data-type="artifact">
-                    <h3>Sol Ring</h3>
-                    <p><strong>Set:</strong> Commander</p>
-                    <p><strong>Type:</strong> Artifact</p>
-                    <p><strong>Color:</strong> Colorless</p>
-                    <p><strong>Rarity:</strong> Uncommon</p>
-                </article>
-
-                <article
-                    class="feature-card"
-                    data-card
-                    data-name="Primordial Hydra"
-                    data-color="green"
-                    data-type="creature">
-                    <h3>Primordial Hydra</h3>
-                    <p><strong>Set:</strong> Magic 2013</p>
-                    <p><strong>Type:</strong> Creature</p>
-                    <p><strong>Color:</strong> Green</p>
-                    <p><strong>Rarity:</strong> Mythic Rare</p>
-                </article>
-
-            </div>
-        </section>
-
+        <section><h2>Card Browser</h2><p>Look up a Magic: The Gathering card by name to see its image, card details, and format legality from Scryfall. This lookup uses the live card catalog, not just sample entries.</p><p>The result shows one printing. Card name searches do not select the exact printing you own; use the Scryfall link to explore other printings.</p></section>
+        <section><h2>Find a card</h2><form id="card-lookup" class="card-lookup-form"><div class="filter-field"><label for="lookup-name">Card name (required)</label><input type="search" id="lookup-name" placeholder="For example: Sol Ring" maxlength="200" required></div><button type="submit" id="lookup-button">Look up card</button></form>
+        <div class="lookup-examples" aria-label="Example card lookups"><button type="button" data-lookup-name="Sol Ring">Sol Ring</button><button type="button" data-lookup-name="Aesi, Tyrant of Gyre Strait">Aesi</button><button type="button" data-lookup-name="Primordial Hydra">Primordial Hydra</button></div>
+        <p id="lookup-status" role="status" aria-live="polite" aria-atomic="true">Enter a name or choose an example. Internet access is required.</p><noscript><p>Enable JavaScript for card lookup.</p></noscript></section>
+        <section id="live-card-result" aria-label="Card lookup result" hidden></section>
+        <section><h2>Card Information Source</h2><p>Card data and images are provided by <a href="https://scryfall.com" target="_blank" rel="noopener noreferrer">Scryfall</a>. Magic: The Gathering and card artwork belong to their respective owners, including Wizards of the Coast and credited artists. NorthStar is an independent student project.</p><p>Lookups send the entered card name to Scryfall. They do not change your saved collection or decks. Card legality is informational and does not automatically validate a complete deck.</p></section>
     </main>
 
     <!-- Site Footer -->
