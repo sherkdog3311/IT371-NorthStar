@@ -359,3 +359,9 @@ body::before {
 @media (max-width: 600px) {
     body::before { background-position: center 300px; opacity: 0.35; }
 }
+
+/* Final submission: responsive demo and readable ownership credits. */
+.site-demo { display:block; width:100%; max-width:960px; height:auto; margin:20px auto; background:#000; }
+main a, footer a { color:#86efac; }
+footer p { max-width:1100px; margin:10px auto; padding:0 16px; }
+footer { font-size:16px; }

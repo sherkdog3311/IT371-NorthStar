@@ -34,7 +34,7 @@
     <main>
         <section><h2>Card Browser</h2><p>Look up a Magic: The Gathering card by name to see its image, card details, and format legality from Scryfall. This lookup uses the live card catalog, not just sample entries.</p><p>The result shows one printing. Card name searches do not select the exact printing you own; use the Scryfall link to explore other printings.</p></section>
         <section><h2>Find a card</h2><form id="card-lookup" class="card-lookup-form"><div class="filter-field"><label for="lookup-name">Card name (required)</label><input type="search" id="lookup-name" placeholder="For example: Sol Ring" maxlength="200" required></div><button type="submit" id="lookup-button">Look up card</button></form>
-        <div class="lookup-examples" aria-label="Example card lookups"><button type="button" data-lookup-name="Sol Ring">Sol Ring</button><button type="button" data-lookup-name="Aesi, Tyrant of Gyre Strait">Aesi</button><button type="button" data-lookup-name="Primordial Hydra">Primordial Hydra</button></div>
+        <div class="lookup-examples" role="group" aria-label="Example card lookups"><button type="button" data-lookup-name="Sol Ring">Sol Ring</button><button type="button" data-lookup-name="Aesi, Tyrant of Gyre Strait">Aesi</button><button type="button" data-lookup-name="Primordial Hydra">Primordial Hydra</button></div>
         <p id="lookup-status" role="status" aria-live="polite" aria-atomic="true">Enter a name or choose an example. Internet access is required.</p><noscript><p>Enable JavaScript for card lookup.</p></noscript></section>
         <section id="live-card-result" aria-label="Card lookup result" hidden></section>
         <section><h2>Card Information Source</h2><p>Card data and images are provided by <a href="https://scryfall.com" target="_blank" rel="noopener noreferrer">Scryfall</a>. Magic: The Gathering and card artwork belong to their respective owners, including Wizards of the Coast and credited artists. NorthStar is an independent student project.</p><p>Lookups send the entered card name to Scryfall. They do not change your saved collection or decks. Card legality is informational and does not automatically validate a complete deck.</p></section>
@@ -42,7 +42,9 @@
 
     <!-- Site Footer -->
     <footer>
-        <p>Created by Jesse Sherk | IT371 Web Design and Development</p>
+        <p>&copy; 2026 Jesse Sherk. NorthStar website design and original content. IT371 Web Design and Development.</p>
+        <p>Magic: The Gathering, card names, symbols, and card artwork belong to Wizards of the Coast and their respective owners. NorthStar is an independent student project and is not affiliated with or endorsed by Wizards of the Coast.</p>
+        <p>Live card data and images: <a href="https://scryfall.com/" target="_blank" rel="noopener noreferrer">Scryfall</a>. Card artists are credited with lookup results. Third-party artwork remains the property of its respective owners.</p>
     </footer>
 
 </body>

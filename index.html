@@ -17,8 +17,8 @@
     </header>
 
   <!-- Main Navigation -->
-  <nav>
-    <a href="index.html">Home</a>
+  <nav aria-label="Main navigation">
+    <a href="index.html" aria-current="page">Home</a>
     <a href="collection.html">Collection</a>
     <a href="cards.html">Cards</a>
     <a href="decks.html">Decks</a>
@@ -42,7 +42,7 @@
             organize their cards, browse card information, and manage their decks.
         </p>
         <p>
-            Created by Jesse Sherk, NorthStar will make it easier to keep track of
+            Created by Jesse Sherk, NorthStar makes it easier to keep track of
             the cards you own, where they are located, and which decks are currently
             using them.
         </p>
@@ -70,15 +70,27 @@
 
         <div class="feature-card">
             <h3>Wishlist</h3>
-            <p>Save and organize cards you want to add to your collection or use in future decks.</p>
+            <p>Explore the planned wishlist feature for wanted cards and future deck upgrades.</p>
         </div>
     </div>
+</section>
+<section aria-labelledby="demo-heading">
+    <h2 id="demo-heading">NorthStar Website Demonstration</h2>
+    <p>Watch Jesse Sherk demonstrate collection entry, card research, deck assignments, and navigation through all seven pages.</p>
+    <video class="site-demo" controls playsinline preload="metadata" poster="northstar-banner.png" aria-label="NorthStar website demonstration by Jesse Sherk">
+        <source src="northstar-demo.mp4" type="video/mp4">
+        Your browser does not support embedded video. Use the download link below.
+    </video>
+    <p><a href="northstar-demo.mp4" download>Download the demonstration video (MP4)</a></p>
+    <p>The demonstration includes spoken narration. Collections and decks save in the current browser; accounts and cloud syncing are not implemented. Wishlist saving is planned.</p>
 </section>
 </main>
 
     <!-- Site Footer -->
     <footer>
-        <p>Created by Jesse Sherk | IT371 Web Design and Development</p>
+        <p>&copy; 2026 Jesse Sherk. NorthStar website design and original content. IT371 Web Design and Development.</p>
+        <p>Magic: The Gathering, card names, symbols, and card artwork belong to Wizards of the Coast and their respective owners. NorthStar is an independent student project and is not affiliated with or endorsed by Wizards of the Coast.</p>
+        <p>Live card data and images: <a href="https://scryfall.com/" target="_blank" rel="noopener noreferrer">Scryfall</a>. Card artists are credited with lookup results. Third-party artwork remains the property of its respective owners.</p>
     </footer>
 </body>
 </html>
